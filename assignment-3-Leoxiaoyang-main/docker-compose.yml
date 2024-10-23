@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - mongo-data:/data/db  # 使用 Docker 卷来存储 MongoDB 数据
+    ports:
+      - "27017:27017"
+    networks:
+      - appnetwork
+
+  backend:
+    build:
+      context: .  # 将上下文指向项目根目录
+      dockerfile: ./server/Dockerfile  # 后端 Dockerfile 位于 server 目录中
+    ports:
+      - "3001:3001"  # 后端服务的端口
+    depends_on:
+      - mongodb  # 后端依赖 MongoDB，先启动 mongodb 容器
+    environment:
+      MONGO_URL: mongodb://mongodb:27017/tickettoride  # 使用 MongoDB 容器的连接地址
+    networks:
+      - appnetwork
+    restart: always
+
+  frontend:
+    build:
+      context: .  # 指向项目根目录
+      dockerfile: Dockerfile  # 前端 Dockerfile 文件
+    ports:
+      - "3000:3000"  # 前端服务的端口
+    depends_on:
+      - backend  # 先启动 backend，再启动 frontend
+    networks:
+      - appnetwork
+    restart: always
+
+networks:
+  appnetwork:
+    driver: bridge
+
+volumes:
+  mongo-data:

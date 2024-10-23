@@ -1,0 +1,22 @@
+# 使用 Node.js 14 镜像
+FROM node:20.12.2
+
+# 设置工作目录
+WORKDIR /app
+
+COPY ./package*.json ./
+
+# 设置淘宝镜像源
+RUN npm config set registry https://registry.npmmirror.com
+
+# 安装依赖
+RUN npm install
+
+# 复制所有文件到工作目录
+COPY ./server ./
+
+# 暴露端口
+EXPOSE 3001
+
+# 启动后端服务，并使用 MongoDB
+CMD ["npm", "run", "service"]

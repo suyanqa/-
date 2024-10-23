@@ -1,0 +1,23 @@
+/* 基础样式 */
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 大屏幕样式 */
+@media (min-width: 992px) {
+    .layout {
+        flex-direction: row;
+    }
+}
+
+/* 中等屏幕样式 */
+@media (min-width: 768px) and (max-width: 991px) {
+    /* 适应中等屏幕的样式 */
+}
+
+/* 小屏幕样式 */
+@media (max-width: 767px) {
+    /* 适应小屏幕的样式 */
+}

@@ -1,0 +1,23 @@
+/* index.css */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* 重置列表样式 */
+ul, ol {
+    list-style: none;
+}
+
+/* 重置链接样式 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 设置全局字体 */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* 其他需要重置的样式 */

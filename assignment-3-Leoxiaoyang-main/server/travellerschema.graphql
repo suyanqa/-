@@ -1,0 +1,41 @@
+scalar GraphQLDate
+
+type Ticket {
+  _id: ID
+  key: Int
+  name: String
+  phone: String
+  seatStatus: String
+  seatNumber: String
+  date: GraphQLDate
+  blacklist: Boolean
+}
+
+type Mutation {
+  addTraveller(ticket: AddTicket!): Ticket!
+  deleteTraveller(_id: String): Boolean!
+  blacklistTraveller(travellername: String!): Boolean!
+  changeStatus(_id: ID!, seatStatus: String!): Boolean!
+}
+
+type Query {
+  listTravellers: [Ticket]!
+}
+
+input InputTicket {
+  key: Int!
+  name: String!
+  phone: String!
+  seatStatus: String!
+  seatNumber: String!
+  date: GraphQLDate
+  blacklist: Boolean
+}
+
+input AddTicket {
+  name: String!
+  phone: String!
+  seatStatus: String!
+  seatNumber: String!
+  date: GraphQLDate
+}
