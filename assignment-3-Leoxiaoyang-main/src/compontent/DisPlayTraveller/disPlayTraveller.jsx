@@ -23,39 +23,42 @@ const DisplayTraveller = ({ visible, travellers,setData,recomposeVisible }) => {
 
     const columns = [
         {
-            title: 'name',
+            title: 'Name',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'phone',
+            title: 'Phone',
             dataIndex: 'phone',
             key: 'phone',
         },
         {
-            title: 'seatStatus',
+            title: 'Seat Status',
             dataIndex: 'seatStatus',
             key: 'seatStatus',
-            render: status => (
-                <Badge status={status === 'Not Reserved' ? 'error' : 'success'} text={status} />
+            render: (status) => (
+                <Badge status={status === 'Reserved' ? 'error' : 'success'} text={status} />
             ),
         },
         {
-            title: 'seatNumber',
+            title: 'Seat Number',
             dataIndex: 'seatNumber',
             key: 'seatNumber',
+            render: (_, record) => (
+                record.seatStatus === 'Not Reserved' ? '' : record.seatNumber
+            ),
         },
         {
-            title: 'date',
+            title: 'Date',
             dataIndex: 'date',
             key: 'date',
         },
         {
-            title: 'action',
+            title: 'Action',
             key: 'action',
             render: (_, record) => (
                 <Button type="danger" onClick={() => handleDelete(record)}>
-                    delete
+                    Delete
                 </Button>
             ),
         },

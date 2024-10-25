@@ -3,7 +3,7 @@ const express = require('express'); // 导入Express框架模块
 const { ApolloServer, UserInputError } = require('apollo-server-express'); // 导入Apollo Server模块
 const { GraphQLScalarType } = require('graphql'); // 导入GraphQL标量类型模块
 const { Kind } = require('graphql/language'); // 导入GraphQL语言模块中的Kind类型
-const { MongoClient,ObjectId } = require('mongodb'); // 导入MongoDB客户端模块
+const { MongoClient,ObjectId } = require('mongodb');
 
 let db; // 变量，指向实际的数据库。
 
